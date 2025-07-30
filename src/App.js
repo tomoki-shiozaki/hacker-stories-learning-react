@@ -20,7 +20,13 @@ const App = () => {
     },
   ];
 
-  const [searchTerm, setSearchTerm] = React.useState("React");
+  const [searchTerm, setSearchTerm] = React.useState(
+    localStorage.getItem("search") || "React"
+  );
+
+  React.useEffect(() => {
+    localStorage.setItem("search", searchTerm);
+  }, [searchTerm]);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -45,7 +51,7 @@ const Search = ({ search, onSearch }) => (
     <label htmlFor="search">Search: </label>
     <input id="search" type="text" value={search} onChange={onSearch} />
     <p>
-      Searching for <strong>{props.search}</strong>.
+      Searching for <strong>{search}</strong>.
     </p>
   </div>
 );
