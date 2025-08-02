@@ -1,14 +1,7 @@
-import * as React from "react";
-
-const useSemiPersistentState = (key, initialState) => {
-  const [value, setValue] = React.useState(
-    localStorage.getItem(key) || initialState
-  );
-  React.useEffect(() => {
-    localStorage.setItem(key, value);
-  }, [value, key]);
-  return [value, setValue];
-};
+import React from "react";
+import useSemiPersistentState from "./hooks/useSemiPersistentState";
+import InputWithLabel from "./components/InputWithLabel";
+import List from "./components/List";
 
 const App = () => {
   const initialStories = [
@@ -30,9 +23,17 @@ const App = () => {
     },
   ];
 
-  const [searchTerm, setSearchTerm] = useSemiPersistentState("search", "React");
+  const getAsyncStories = () =>
+    Promise.resolve({ data: { stories: initialStories } });
 
-  const [stories, setStories] = React.useState(initialStories);
+  const [searchTerm, setSearchTerm] = useSemiPersistentState("search", "React");
+  const [stories, setStories] = React.useState([]);
+
+  React.useEffect(() => {
+    getAsyncStories().then((result) => {
+      setStories(result.data.stories);
+    });
+  }, []);
 
   const handleRemoveStory = (item) => {
     const newStories = stories.filter(
@@ -63,68 +64,9 @@ const App = () => {
       <p>
         Searching for <strong>{searchTerm}</strong>.
       </p>
-
       <hr />
       <List list={searchedStories} onRemoveItem={handleRemoveStory} />
     </div>
-  );
-};
-
-const InputWithLabel = ({
-  id,
-  value,
-  type = "text",
-  onInputChange,
-  isFocused,
-  children,
-}) => {
-  // A
-  const inputRef = React.useRef();
-  // C
-  React.useEffect(() => {
-    if (isFocused && inputRef.current) {
-      // D
-      inputRef.current.focus();
-    }
-  }, [isFocused]);
-  return (
-    <>
-      <label htmlFor={id}>{children}</label>
-      &nbsp;
-      {/* B */}
-      <input
-        ref={inputRef}
-        id={id}
-        type={type}
-        value={value}
-        onChange={onInputChange}
-      />
-    </>
-  );
-};
-
-const List = ({ list, onRemoveItem }) => (
-  <ul>
-    {list.map((item) => (
-      <Item key={item.objectID} item={item} onRemoveItem={onRemoveItem} />
-    ))}
-  </ul>
-);
-const Item = ({ item, onRemoveItem }) => {
-  return (
-    <li>
-      <span>
-        <a href={item.url}>{item.title}</a>
-      </span>
-      <span>{item.author}</span>
-      <span>{item.num_comments}</span>
-      <span>{item.points}</span>
-      <span>
-        <button type="button" onClick={() => onRemoveItem(item)}>
-          Dismiss
-        </button>
-      </span>
-    </li>
   );
 };
 
