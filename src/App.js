@@ -1,17 +1,14 @@
-import React, { useCallback } from "react";
-import axios from "axios";
+import React from "react";
 import useSemiPersistentState from "./hooks/useSemiPersistentState";
 import InputWithLabel from "./components/InputWithLabel";
 import List from "./components/List";
 import { getAsyncStories } from "./api/getStories";
 import storiesReducer from "./reducers/storiesReducer";
 
-const API_ENDPOINT = "https://hn.algolia.com/api/v1/search?query=";
-
 const App = () => {
   const [searchTerm, setSearchTerm] = useSemiPersistentState("search", "React");
 
-  const [url, setUrl] = React.useState(`${API_ENDPOINT}${searchTerm}`);
+  const [query, setQuery] = React.useState(searchTerm);
 
   const [stories, dispatchStories] = React.useReducer(storiesReducer, {
     data: [],
@@ -23,15 +20,15 @@ const App = () => {
     dispatchStories({ type: "STORIES_FETCH_INIT" });
 
     try {
-      const result = await axios.get(url);
+      const hits = await getAsyncStories(query);
       dispatchStories({
         type: "STORIES_FETCH_SUCCESS",
-        payload: result.data.hits,
+        payload: hits,
       });
     } catch {
       dispatchStories({ type: "STORIES_FETCH_FAILURE" });
     }
-  }, [url]);
+  }, [query]);
 
   React.useEffect(() => {
     handleFetchStories(); // C
@@ -49,7 +46,7 @@ const App = () => {
   };
 
   const handleSearchSubmit = () => {
-    setUrl(`${API_ENDPOINT}${searchTerm}`);
+    setQuery(searchTerm);
   };
 
   return (
