@@ -5,8 +5,13 @@ import List from "./components/List";
 import { getAsyncStories } from "./api/getStories";
 import storiesReducer from "./reducers/storiesReducer";
 
+const API_ENDPOINT = "https://hn.algolia.com/api/v1/search?query=";
+
 const App = () => {
   const [searchTerm, setSearchTerm] = useSemiPersistentState("search", "React");
+
+  const [url, setUrl] = React.useState(`${API_ENDPOINT}${searchTerm}`);
+
   const [stories, dispatchStories] = React.useReducer(storiesReducer, {
     data: [],
     isLoading: false,
@@ -14,20 +19,18 @@ const App = () => {
   });
 
   const handleFetchStories = useCallback(async () => {
-    if (!searchTerm) return;
-
     dispatchStories({ type: "STORIES_FETCH_INIT" });
 
-    try {
-      const hits = await getAsyncStories(searchTerm);
-      dispatchStories({
-        type: "STORIES_FETCH_SUCCESS",
-        payload: hits,
-      });
-    } catch {
-      dispatchStories({ type: "STORIES_FETCH_FAILURE" });
-    }
-  }, [searchTerm]);
+    fetch(url)
+      .then((response) => response.json())
+      .then((result) => {
+        dispatchStories({
+          type: "STORIES_FETCH_SUCCESS",
+          payload: result.hits,
+        });
+      })
+      .catch(() => dispatchStories({ type: "STORIES_FETCH_FAILURE" }));
+  }, [url]);
 
   React.useEffect(() => {
     handleFetchStories(); // C
@@ -40,8 +43,12 @@ const App = () => {
     });
   };
 
-  const handleSearch = (event) => {
+  const handleSearchInput = (event) => {
     setSearchTerm(event.target.value);
+  };
+
+  const handleSearchSubmit = () => {
+    setUrl(`${API_ENDPOINT}${searchTerm}`);
   };
 
   return (
@@ -51,10 +58,14 @@ const App = () => {
         id="search"
         value={searchTerm}
         isFocused
-        onInputChange={handleSearch}
+        onInputChange={handleSearchInput}
       >
         <strong>Search:</strong>
       </InputWithLabel>
+
+      <button type="button" disabled={!searchTerm} onClick={handleSearchSubmit}>
+        Submit
+      </button>
       <p>
         Searching for <strong>{searchTerm}</strong>.
       </p>
