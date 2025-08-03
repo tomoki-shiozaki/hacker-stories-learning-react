@@ -1,7 +1,7 @@
 import React from "react";
 import useSemiPersistentState from "./hooks/useSemiPersistentState";
-import InputWithLabel from "./components/InputWithLabel";
 import List from "./components/List";
+import SearchForm from "./components/SearchForm";
 import { getAsyncStories } from "./api/getStories";
 import storiesReducer from "./reducers/storiesReducer";
 
@@ -45,25 +45,21 @@ const App = () => {
     setSearchTerm(event.target.value);
   };
 
-  const handleSearchSubmit = () => {
+  const handleSearchSubmit = (event) => {
     setQuery(searchTerm);
+
+    event.preventDefault();
   };
 
   return (
     <div>
       <h1>My Hacker Stories</h1>
-      <InputWithLabel
-        id="search"
-        value={searchTerm}
-        isFocused
-        onInputChange={handleSearchInput}
-      >
-        <strong>Search:</strong>
-      </InputWithLabel>
 
-      <button type="button" disabled={!searchTerm} onClick={handleSearchSubmit}>
-        Submit
-      </button>
+      <SearchForm
+        searchTerm={searchTerm}
+        onSearchInput={handleSearchInput}
+        onSearchSubmit={handleSearchSubmit}
+      />
       <p>
         Searching for <strong>{searchTerm}</strong>.
       </p>
