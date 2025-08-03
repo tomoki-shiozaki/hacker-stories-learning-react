@@ -1,38 +1,25 @@
 import React from "react";
+
 import useSemiPersistentState from "./hooks/useSemiPersistentState";
+import useFetchStories from "./hooks/useFetchStories";
+
 import List from "./components/List";
 import SearchForm from "./components/SearchForm";
-import { getAsyncStories } from "./api/getStories";
+
 import storiesReducer from "./reducers/storiesReducer";
+import initialStoriesState from "./reducers/initialStoriesState";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useSemiPersistentState("search", "React");
 
   const [query, setQuery] = React.useState(searchTerm);
 
-  const [stories, dispatchStories] = React.useReducer(storiesReducer, {
-    data: [],
-    isLoading: false,
-    isError: false,
-  });
+  const [stories, dispatchStories] = React.useReducer(
+    storiesReducer,
+    initialStoriesState
+  );
 
-  const handleFetchStories = React.useCallback(async () => {
-    dispatchStories({ type: "STORIES_FETCH_INIT" });
-
-    try {
-      const hits = await getAsyncStories(query);
-      dispatchStories({
-        type: "STORIES_FETCH_SUCCESS",
-        payload: hits,
-      });
-    } catch {
-      dispatchStories({ type: "STORIES_FETCH_FAILURE" });
-    }
-  }, [query]);
-
-  React.useEffect(() => {
-    handleFetchStories(); // C
-  }, [handleFetchStories]); // D
+  useFetchStories(query, dispatchStories);
 
   const handleRemoveStory = (item) => {
     dispatchStories({
