@@ -5,6 +5,8 @@ import List from "./components/List";
 import { getAsyncStories } from "./api/getStories";
 import storiesReducer from "./reducers/storiesReducer";
 
+const API_ENDPOINT = "https://hn.algolia.com/api/v1/search?query=";
+
 const App = () => {
   const [searchTerm, setSearchTerm] = useSemiPersistentState("search", "React");
   const [stories, dispatchStories] = React.useReducer(storiesReducer, {
@@ -13,21 +15,25 @@ const App = () => {
     isError: false,
   });
 
-  React.useEffect(() => {
+  // A
+  const handleFetchStories = React.useCallback(() => {
+    // B
     if (!searchTerm) return;
+    dispatchStories({ type: "STORIES_FETCH_INIT" });
+    fetch(`${API_ENDPOINT}${searchTerm}`)
+      .then((response) => response.json())
+      .then((result) => {
+        dispatchStories({
+          type: "STORIES_FETCH_SUCCESS",
+          payload: result.hits,
+        });
+      })
+      .catch(() => dispatchStories({ type: "STORIES_FETCH_FAILURE" }));
+  }, [searchTerm]); // E
 
-    const fetchData = async () => {
-      dispatchStories({ type: "STORIES_FETCH_INIT" });
-      try {
-        const hits = await getAsyncStories(searchTerm);
-        dispatchStories({ type: "STORIES_FETCH_SUCCESS", payload: hits });
-      } catch {
-        dispatchStories({ type: "STORIES_FETCH_FAILURE" });
-      }
-    };
-
-    fetchData();
-  }, [searchTerm]);
+  React.useEffect(() => {
+    handleFetchStories(); // C
+  }, [handleFetchStories]); // D
 
   const handleRemoveStory = (item) => {
     dispatchStories({
