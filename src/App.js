@@ -9,6 +9,8 @@ import SearchForm from "./components/SearchForm";
 import storiesReducer from "./reducers/storiesReducer";
 import initialStoriesState from "./reducers/initialStoriesState";
 
+import "./App.css";
+
 const App = () => {
   const [searchTerm, setSearchTerm] = useSemiPersistentState("search", "React");
 
@@ -39,8 +41,8 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>My Hacker Stories</h1>
+    <div className="container">
+      <h1 className="headline-primary">My Hacker Stories</h1>
 
       <SearchForm
         searchTerm={searchTerm}
