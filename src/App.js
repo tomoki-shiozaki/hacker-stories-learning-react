@@ -9,7 +9,7 @@ import SearchForm from "./components/SearchForm";
 import storiesReducer from "./reducers/storiesReducer";
 import initialStoriesState from "./reducers/initialStoriesState";
 
-import styles from "./App.module.css";
+import { StyledContainer, StyledHeadlinePrimary } from "./App.styles";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useSemiPersistentState("search", "React");
@@ -41,8 +41,8 @@ const App = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.headlinePrimary}>My Hacker Stories</h1>
+    <StyledContainer>
+      <StyledHeadlinePrimary>My Hacker Stories</StyledHeadlinePrimary>
 
       <SearchForm
         searchTerm={searchTerm}
@@ -61,7 +61,7 @@ const App = () => {
       ) : (
         <List list={stories.data} onRemoveItem={handleRemoveStory} />
       )}
-    </div>
+    </StyledContainer>
   );
 };
 
