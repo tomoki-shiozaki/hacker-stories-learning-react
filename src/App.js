@@ -9,6 +9,8 @@ import SearchForm from "./components/SearchForm";
 import storiesReducer from "./reducers/storiesReducer";
 import initialStoriesState from "./reducers/initialStoriesState";
 
+import { getSumComments } from "./utils";
+
 import { StyledContainer, StyledHeadlinePrimary } from "./App.styles";
 
 const App = () => {
@@ -22,6 +24,8 @@ const App = () => {
   );
 
   useFetchStories(query, dispatchStories);
+
+  const sumComments = React.useMemo(() => getSumComments(stories), [stories]);
 
   const handleRemoveStory = React.useCallback(
     (item) => {
@@ -45,7 +49,9 @@ const App = () => {
 
   return (
     <StyledContainer>
-      <StyledHeadlinePrimary>My Hacker Stories</StyledHeadlinePrimary>
+      <StyledHeadlinePrimary>
+        My Hacker Stories with {sumComments} comments.
+      </StyledHeadlinePrimary>
 
       <SearchForm
         searchTerm={searchTerm}
