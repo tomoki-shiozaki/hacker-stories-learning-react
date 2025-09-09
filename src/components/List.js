@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "../App.module.css";
 
-const List = ({ list, onRemoveItem }) => (
+const List = React.memo(({ list, onRemoveItem }) => (
   <ul>
     {list.map((item) => (
       <Item key={item.objectID} item={item} onRemoveItem={onRemoveItem} />
     ))}
   </ul>
-);
+));
 
 const Item = ({ item, onRemoveItem }) => (
   <li className={styles.item}>
