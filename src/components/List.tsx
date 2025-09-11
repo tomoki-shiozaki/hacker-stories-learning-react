@@ -1,7 +1,19 @@
 import React from "react";
 import styles from "../App.module.css";
+import { Story } from "../types";
 
-const List = React.memo(({ list, onRemoveItem }) => (
+// props の型定義
+type ListProps = {
+  list: Story[];
+  onRemoveItem: (item: Story) => void;
+};
+
+type ItemProps = {
+  item: Story;
+  onRemoveItem: (item: Story) => void;
+};
+
+const List = React.memo(({ list, onRemoveItem }: ListProps) => (
   <ul>
     {list.map((item) => (
       <Item key={item.objectID} item={item} onRemoveItem={onRemoveItem} />
@@ -9,7 +21,7 @@ const List = React.memo(({ list, onRemoveItem }) => (
   </ul>
 ));
 
-const Item = ({ item, onRemoveItem }) => (
+const Item = ({ item, onRemoveItem }: ItemProps) => (
   <li className={styles.item}>
     <span style={{ width: "40%" }}>
       <a href={item.url}>{item.title}</a>
