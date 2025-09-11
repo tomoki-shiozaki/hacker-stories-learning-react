@@ -13,6 +13,8 @@ import { getSumComments } from "./utils";
 
 import { StyledContainer, StyledHeadlinePrimary } from "./App.styles";
 
+import { Story } from "./types";
+
 const App = () => {
   const [searchTerm, setSearchTerm] = useSemiPersistentState("search", "React");
 
@@ -28,7 +30,7 @@ const App = () => {
   const sumComments = React.useMemo(() => getSumComments(stories), [stories]);
 
   const handleRemoveStory = React.useCallback(
-    (item) => {
+    (item: Story) => {
       dispatchStories({
         type: "REMOVE_STORY",
         payload: item,
@@ -37,14 +39,13 @@ const App = () => {
     [dispatchStories]
   );
 
-  const handleSearchInput = (event) => {
+  const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
-  const handleSearchSubmit = (event) => {
-    setQuery(searchTerm);
-
+  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setQuery(searchTerm);
   };
 
   return (
