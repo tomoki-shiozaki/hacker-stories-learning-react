@@ -6,3 +6,9 @@ export type Story = {
   num_comments: number;
   points: number;
 };
+
+export type StoriesState = {
+  data: Story[];
+  isLoading: boolean;
+  isError: boolean;
+};

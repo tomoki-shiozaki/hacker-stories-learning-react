@@ -1,11 +1,8 @@
 import React from "react";
 
-import List from "./components/List";
-import SearchForm from "./components/SearchForm";
+import StoriesView from "./components/StoriesView";
 
-import { getSumComments } from "./utils";
-
-import { StyledContainer, StyledHeadlinePrimary } from "./App.styles";
+import { StyledContainer } from "./App.styles";
 
 import { useSearch } from "./hooks/useSearch";
 import { useStories } from "./hooks/useStories";
@@ -17,31 +14,15 @@ const App = () => {
   // ストーリー管理ロジック
   const { stories, handleRemoveStory } = useStories(query);
 
-  const sumComments = React.useMemo(() => getSumComments(stories), [stories]);
-
   return (
     <StyledContainer>
-      <StyledHeadlinePrimary>
-        My Hacker Stories with {sumComments} comments.
-      </StyledHeadlinePrimary>
-
-      <SearchForm
+      <StoriesView
         searchTerm={searchTerm}
         onSearchInput={handleSearchInput}
         onSearchSubmit={handleSearchSubmit}
+        stories={stories}
+        onRemoveItem={handleRemoveStory}
       />
-      <p>
-        Searching for <strong>{searchTerm}</strong>.
-      </p>
-      <hr />
-
-      {stories.isError && <p>Something went wrong ...</p>}
-
-      {stories.isLoading ? (
-        <p>Loading ...</p>
-      ) : (
-        <List list={stories.data} onRemoveItem={handleRemoveStory} />
-      )}
     </StyledContainer>
   );
 };
