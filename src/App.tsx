@@ -1,24 +1,17 @@
 import React from "react";
-
-import useSemiPersistentState from "./hooks/useSemiPersistentState";
 import useFetchStories from "./hooks/useFetchStories";
-
 import List from "./components/List";
 import SearchForm from "./components/SearchForm";
-
 import storiesReducer from "./reducers/storiesReducer";
 import initialStoriesState from "./reducers/initialStoriesState";
-
 import { getSumComments } from "./utils";
-
 import { StyledContainer, StyledHeadlinePrimary } from "./App.styles";
-
 import { Story } from "./types";
+import { useSearch } from "./hooks/useSearch";
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = useSemiPersistentState("search", "React");
-
-  const [query, setQuery] = React.useState(searchTerm);
+  const { searchTerm, query, handleSearchInput, handleSearchSubmit } =
+    useSearch("search", "React");
 
   const [stories, dispatchStories] = React.useReducer(
     storiesReducer,
@@ -38,15 +31,6 @@ const App = () => {
     },
     [dispatchStories]
   );
-
-  const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setQuery(searchTerm);
-  };
 
   return (
     <StyledContainer>
