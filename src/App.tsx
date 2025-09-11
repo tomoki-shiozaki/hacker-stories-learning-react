@@ -1,36 +1,23 @@
 import React from "react";
-import useFetchStories from "./hooks/useFetchStories";
+
 import List from "./components/List";
 import SearchForm from "./components/SearchForm";
-import storiesReducer from "./reducers/storiesReducer";
-import initialStoriesState from "./reducers/initialStoriesState";
+
 import { getSumComments } from "./utils";
+
 import { StyledContainer, StyledHeadlinePrimary } from "./App.styles";
-import { Story } from "./types";
+
 import { useSearch } from "./hooks/useSearch";
+import { useStories } from "./hooks/useStories";
 
 const App = () => {
+  // 検索ロジック
   const { searchTerm, query, handleSearchInput, handleSearchSubmit } =
     useSearch("search", "React");
-
-  const [stories, dispatchStories] = React.useReducer(
-    storiesReducer,
-    initialStoriesState
-  );
-
-  useFetchStories(query, dispatchStories);
+  // ストーリー管理ロジック
+  const { stories, handleRemoveStory } = useStories(query);
 
   const sumComments = React.useMemo(() => getSumComments(stories), [stories]);
-
-  const handleRemoveStory = React.useCallback(
-    (item: Story) => {
-      dispatchStories({
-        type: "REMOVE_STORY",
-        payload: item,
-      });
-    },
-    [dispatchStories]
-  );
 
   return (
     <StyledContainer>
