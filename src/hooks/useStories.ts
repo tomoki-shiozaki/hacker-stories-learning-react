@@ -2,7 +2,7 @@ import React from "react";
 import storiesReducer from "../reducers/storiesReducer";
 import initialStoriesState from "../reducers/initialStoriesState";
 import useFetchStories from "./useFetchStories";
-import { Story } from "../types";
+import { Story } from "../types/story";
 
 export const useStories = (query: string) => {
   const [stories, dispatchStories] = React.useReducer(

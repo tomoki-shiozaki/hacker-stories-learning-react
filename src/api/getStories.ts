@@ -1,4 +1,4 @@
-import { Story } from "../types";
+import { Story } from "../types/story";
 
 const API_ENDPOINT = "https://hn.algolia.com/api/v1/search?query=";
 
