@@ -1,6 +1,12 @@
 import { StoriesState, StoriesAction } from "../types/story";
 
-const storiesReducer = (
+export const initialStoriesState: StoriesState = {
+  data: [],
+  isLoading: false,
+  isError: false,
+};
+
+export const storiesReducer = (
   state: StoriesState,
   action: StoriesAction
 ): StoriesState => {
@@ -35,5 +41,3 @@ const storiesReducer = (
       throw new Error("Unhandled action type");
   }
 };
-
-export default storiesReducer;

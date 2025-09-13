@@ -1,6 +1,8 @@
 import React from "react";
-import storiesReducer from "../reducers/storiesReducer";
-import initialStoriesState from "../reducers/initialStoriesState";
+import {
+  storiesReducer,
+  initialStoriesState,
+} from "../reducers/storiesReducer";
 import useFetchStories from "./useFetchStories";
 import { Story } from "../types/story";
 
