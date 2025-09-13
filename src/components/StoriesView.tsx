@@ -2,7 +2,7 @@ import React from "react";
 import List from "./List";
 import SearchForm from "./SearchForm";
 import { StyledHeadlinePrimary } from "../App.styles";
-import { getSumComments } from "../utils";
+import { getSumComments } from "../utils/utils";
 import { StoriesState, Story } from "../types/story";
 
 type StoriesViewProps = {
