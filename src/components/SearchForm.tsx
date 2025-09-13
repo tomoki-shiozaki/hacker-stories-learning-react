@@ -1,7 +1,18 @@
+import React from "react";
 import InputWithLabel from "./InputWithLabel";
 import styles from "../App.module.css";
 
-const SearchForm = ({ searchTerm, onSearchInput, onSearchSubmit }) => (
+type SearchFormProps = {
+  searchTerm: string;
+  onSearchInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSearchSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+};
+
+const SearchForm = ({
+  searchTerm,
+  onSearchInput,
+  onSearchSubmit,
+}: SearchFormProps) => (
   <form onSubmit={onSearchSubmit} className={styles.searchForm}>
     <InputWithLabel
       id="search"
