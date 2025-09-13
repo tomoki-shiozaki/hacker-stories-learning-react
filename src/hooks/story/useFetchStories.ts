@@ -1,11 +1,16 @@
 import { useEffect, useCallback } from "react";
-import { getAsyncStories } from "../api/getStories";
+import { getAsyncStories } from "../../api/getStories";
+import { StoriesAction, Story } from "../../types/story";
 
-const useFetchStories = (query, dispatch) => {
+const useFetchStories = (
+  query: string,
+  dispatch: React.Dispatch<StoriesAction>
+): void => {
   const fetchStories = useCallback(async () => {
     dispatch({ type: "STORIES_FETCH_INIT" });
+
     try {
-      const hits = await getAsyncStories(query);
+      const hits: Story[] = await getAsyncStories(query);
       dispatch({ type: "STORIES_FETCH_SUCCESS", payload: hits });
     } catch {
       dispatch({ type: "STORIES_FETCH_FAILURE" });

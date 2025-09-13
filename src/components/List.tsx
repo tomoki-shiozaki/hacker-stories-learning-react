@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../App.module.css";
-import { Story } from "../types";
+import { Story } from "../types/story";
 
 // props の型定義
 type ListProps = {

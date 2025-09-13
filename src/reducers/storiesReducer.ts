@@ -1,4 +1,15 @@
-const storiesReducer = (state, action) => {
+import { StoriesState, StoriesAction } from "../types/story";
+
+export const initialStoriesState: StoriesState = {
+  data: [],
+  isLoading: false,
+  isError: false,
+};
+
+export const storiesReducer = (
+  state: StoriesState,
+  action: StoriesAction
+): StoriesState => {
   switch (action.type) {
     case "STORIES_FETCH_INIT":
       return {
@@ -27,8 +38,6 @@ const storiesReducer = (state, action) => {
         ),
       };
     default:
-      throw new Error();
+      throw new Error("Unhandled action type");
   }
 };
-
-export default storiesReducer;
