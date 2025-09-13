@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from "react";
-import { getAsyncStories } from "../api/getStories";
-import { StoriesAction, Story } from "../types/story";
+import { getAsyncStories } from "../../api/getStories";
+import { StoriesAction, Story } from "../../types/story";
 
 const useFetchStories = (
   query: string,

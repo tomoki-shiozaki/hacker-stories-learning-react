@@ -4,8 +4,8 @@ import StoriesView from "./components/StoriesView";
 
 import { StyledContainer } from "./App.styles";
 
-import { useSearch } from "./hooks/useSearch";
-import { useStories } from "./hooks/useStories";
+import { useSearch } from "./hooks/search/useSearch";
+import { useStories } from "./hooks/story/useStories";
 
 const App = () => {
   // 検索ロジック

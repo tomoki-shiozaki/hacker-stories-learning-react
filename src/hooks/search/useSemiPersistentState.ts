@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { logWarn } from "../utils/logger";
+import { logWarn } from "../../utils/logger";
 
 const useSemiPersistentState = <T>(
   key: string,
