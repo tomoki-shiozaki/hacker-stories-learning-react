@@ -1,9 +1,9 @@
 import React from "react";
-import List from "./List";
-import SearchForm from "./SearchForm";
-import styles from "../App.module.css";
-import { getSumComments } from "../utils/utils";
-import { StoriesState, Story } from "../types/story";
+import List from "./List/List";
+import SearchForm from "./SearchForm/SearchForm";
+import styles from "./StoriesView.module.css";
+import { getSumComments } from "../../utils/utils";
+import { StoriesState, Story } from "../../types/story";
 
 type StoriesViewProps = {
   searchTerm: string;

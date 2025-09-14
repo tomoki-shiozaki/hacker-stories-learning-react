@@ -1,6 +1,6 @@
 import React from "react";
 
-import StoriesView from "./components/StoriesView";
+import StoriesView from "./components/StoriesView/StoriesView";
 
 import styles from "./App.module.css";
 
