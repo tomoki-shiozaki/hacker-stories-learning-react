@@ -1,7 +1,7 @@
 import React from "react";
 import List from "./List";
 import SearchForm from "./SearchForm";
-import { StyledHeadlinePrimary } from "../App.styles";
+import styles from "../App.module.css";
 import { getSumComments } from "../utils/utils";
 import { StoriesState, Story } from "../types/story";
 
@@ -24,9 +24,9 @@ const StoriesView = ({
 
   return (
     <>
-      <StyledHeadlinePrimary>
+      <h1 className={styles.headlinePrimary}>
         My Hacker Stories with {sumComments} comments.
-      </StyledHeadlinePrimary>
+      </h1>
 
       <SearchForm
         searchTerm={searchTerm}
