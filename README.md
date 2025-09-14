@@ -1,5 +1,7 @@
 # Hacker Stories — React & TypeScript 学習プロジェクト
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 ## 概要
 
 Hacker News（技術系ニュース・記事の共有サイト）の API を利用して、ニュース記事を検索・表示・削除できる SPA です。  
@@ -65,3 +67,7 @@ npm start
 ```
 
 ブラウザで `http://localhost:3000` にアクセスしてアプリを確認してください。
+
+## ライセンス
+
+このプロジェクトは [MIT ライセンス](LICENSE) のもとで公開されています。
