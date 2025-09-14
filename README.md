@@ -8,6 +8,15 @@ React と TypeScript の学習のために作成しました。
 
 ---
 
+## スクリーンショット
+
+![homepage](src/assets/screenshots/homepage.png)
+
+## デプロイ
+
+アプリは以下の URL で公開しています。  
+https://hacker-stories-learning-react.onrender.com
+
 ## API
 
 - [Hacker News Algolia API](https://hn.algolia.com/api) を利用
