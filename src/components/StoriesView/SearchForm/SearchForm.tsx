@@ -1,6 +1,7 @@
 import React from "react";
-import InputWithLabel from "./InputWithLabel";
-import styles from "../App.module.css";
+import InputWithLabel from "../../common/InputWithLabel/InputWithLabel";
+import common from "../../../styles/common.module.css";
+import styles from "./SearchForm.module.css";
 
 type SearchFormProps = {
   searchTerm: string;
@@ -25,7 +26,7 @@ const SearchForm = ({
     <button
       type="submit"
       disabled={!searchTerm}
-      className={`${styles.button} ${styles.buttonLarge}`}
+      className={`${common.button} ${common.buttonLarge}`}
     >
       Submit
     </button>

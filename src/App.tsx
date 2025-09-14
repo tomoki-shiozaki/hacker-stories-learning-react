@@ -1,8 +1,8 @@
 import React from "react";
 
-import StoriesView from "./components/StoriesView";
+import StoriesView from "./components/StoriesView/StoriesView";
 
-import { StyledContainer } from "./App.styles";
+import styles from "./App.module.css";
 
 import { useSearch } from "./hooks/search/useSearch";
 import { useStories } from "./hooks/story/useStories";
@@ -15,7 +15,7 @@ const App = () => {
   const { stories, handleRemoveStory } = useStories(query);
 
   return (
-    <StyledContainer>
+    <div className={styles.container}>
       <StoriesView
         searchTerm={searchTerm}
         onSearchInput={handleSearchInput}
@@ -23,7 +23,7 @@ const App = () => {
         stories={stories}
         onRemoveItem={handleRemoveStory}
       />
-    </StyledContainer>
+    </div>
   );
 };
 

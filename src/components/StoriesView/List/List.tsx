@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "../App.module.css";
-import { Story } from "../types/story";
+import styles from "./List.module.css";
+import common from "../../../styles/common.module.css";
+import { Story } from "../../../types/story";
 
 // props の型定義
 type ListProps = {
@@ -33,7 +34,7 @@ const Item = ({ item, onRemoveItem }: ItemProps) => (
       <button
         type="button"
         onClick={() => onRemoveItem(item)}
-        className={`${styles.button} ${styles.buttonSmall}`}
+        className={`${common.button} ${common.buttonSmall}`}
       >
         Dismiss
       </button>
