@@ -8,6 +8,10 @@ React と TypeScript の学習のために作成しました。
 
 ---
 
+## API
+
+- [Hacker News Algolia API](https://hn.algolia.com/api) を利用
+
 ## 使用技術
 
 ### フロントエンド
@@ -17,49 +21,38 @@ React と TypeScript の学習のために作成しました。
 
 ### スタイリング
 
-- CSS Modules
+- CSS Modules を使用し、各コンポーネントごとにスタイルを分離・管理
+- 一部共通スタイル（ボタン）を `common.module.css` に定義し、再利用性を確保
 
 ### 状態管理・ロジック
 
-- React Hooks（useState, useReducer, useEffect, useRef）
-
-### その他
-
-- 簡易ユーティリティ関数の実装
-- ロギング用のカスタム関数
-
-- React
-- TypeScript
-- CSS Modules
-- React Hooks (`useReducer`, `useEffect`, `useState`)
-- 簡易的なユーティリティ関数と Logger
+- React Hooks（`useState`, `useReducer`, `useEffect`, `useRef`, `useCallback`, `useMemo`）を活用
+- `React.memo` によるコンポーネントのメモ化で、不要な再レンダリングを防止
+- `localStorage` を用いた状態の簡易永続化（初回マウントの判定には `useRef` を使用）
+- カスタムフック（`useSearch`, `useStories` など）により、ロジックの分離と再利用性・可読性を向上
 
 ---
 
-## 🧠 工夫したポイント
+## 工夫したポイント
 
-- 教材をベースに自分で構成を見直し、リファクタリングを行った
-- JavaScript から TypeScript に移行し、**全体に型定義を適用**
-- **責務ごとにファイル分割・整理**（コンポーネント、フック、ユーティリティなど）
-- `ref` と `useEffect` を使った自動フォーカス機能
-- `useReducer` による状態管理（Loading / Error / Data）
+- 教材をベースにしつつ、責務ごとにファイルを分割・整理（コンポーネント、カスタムフック、ユーティリティなど）して構成を見直した
 
 ---
 
-## 🛠 今後の改善予定
+## 今後の改善予定
 
-- API との通信処理を `fetch` ではなく `axios` に変更
-- ユーザーごとのお気に入り機能の追加
-- レスポンシブ対応 or デザインの強化（例：Tailwind CSS）
-- 単体テスト・統合テストの追加（Jest + Testing Library）
+- 単体テスト・統合テストの追加
+- CRA から Vite への移行
 
 ---
 
-## 📦 セットアップ方法
+## セットアップ方法
 
 ```bash
-git clone https://github.com/your-username/story-search-app.git
-cd story-search-app
+git clone git@github.com:tomoki-shiozaki/hacker-stories-learning-react.git
+cd hacker-stories-learning-react
 npm install
 npm start
 ```
+
+ブラウザで `http://localhost:3000` にアクセスしてアプリを確認してください。
