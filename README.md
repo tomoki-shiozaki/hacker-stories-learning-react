@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Hacker Stories — React & TypeScript 学習プロジェクト
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 概要
 
-## Available Scripts
+Hacker News（技術系ニュース・記事の共有サイト）の API を利用して、ニュース記事を検索・表示・削除できる SPA です。  
+React と TypeScript の学習のために作成しました。
+教材をベースにしつつ、自分でリファクタリングを行い、学習を深めています。
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 使用技術
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### フロントエンド
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React（Function Components, Hooks）
+- TypeScript（型定義、ユニオン型、ジェネリクス）
 
-### `npm test`
+### スタイリング
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- CSS Modules
 
-### `npm run build`
+### 状態管理・ロジック
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React Hooks（useState, useReducer, useEffect, useRef）
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### その他
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 簡易ユーティリティ関数の実装
+- ロギング用のカスタム関数
 
-### `npm run eject`
+- React
+- TypeScript
+- CSS Modules
+- React Hooks (`useReducer`, `useEffect`, `useState`)
+- 簡易的なユーティリティ関数と Logger
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🧠 工夫したポイント
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 教材をベースに自分で構成を見直し、リファクタリングを行った
+- JavaScript から TypeScript に移行し、**全体に型定義を適用**
+- **責務ごとにファイル分割・整理**（コンポーネント、フック、ユーティリティなど）
+- `ref` と `useEffect` を使った自動フォーカス機能
+- `useReducer` による状態管理（Loading / Error / Data）
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🛠 今後の改善予定
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- API との通信処理を `fetch` ではなく `axios` に変更
+- ユーザーごとのお気に入り機能の追加
+- レスポンシブ対応 or デザインの強化（例：Tailwind CSS）
+- 単体テスト・統合テストの追加（Jest + Testing Library）
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 📦 セットアップ方法
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+git clone https://github.com/your-username/story-search-app.git
+cd story-search-app
+npm install
+npm start
+```
