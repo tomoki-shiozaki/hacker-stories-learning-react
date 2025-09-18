@@ -1,18 +1,20 @@
 import { renderHook, act } from "@testing-library/react";
 import useSemiPersistentState from "./useSemiPersistentState";
 
+const localStorageProto = Object.getPrototypeOf(window.localStorage);
+
 beforeEach(() => {
   let store: Record<string, string> = {};
 
   jest
-    .spyOn(window.localStorage.__proto__, "getItem")
+    .spyOn(localStorageProto, "getItem")
     .mockImplementation((...args: any[]) => {
       const key = args[0] as string;
       return store[key] || null;
     });
 
   jest
-    .spyOn(window.localStorage.__proto__, "setItem")
+    .spyOn(localStorageProto, "setItem")
     .mockImplementation((...args: any[]) => {
       const key = args[0] as string;
       const value = args[1] as string;
@@ -20,17 +22,19 @@ beforeEach(() => {
     });
 
   jest
-    .spyOn(window.localStorage.__proto__, "removeItem")
+    .spyOn(localStorageProto, "removeItem")
     .mockImplementation((...args: any[]) => {
       const key = args[0] as string;
       delete store[key];
     });
 
-  jest.spyOn(window.localStorage.__proto__, "clear").mockImplementation(() => {
+  jest.spyOn(localStorageProto, "clear").mockImplementation(() => {
     store = {};
   });
+});
 
-  window.localStorage.clear();
+afterEach(() => {
+  jest.restoreAllMocks();
 });
 
 describe("useSemiPersistentState", () => {
