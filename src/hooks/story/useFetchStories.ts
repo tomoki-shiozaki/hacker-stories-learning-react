@@ -2,7 +2,7 @@ import { useEffect, useCallback } from "react";
 import { getAsyncStories } from "../../api/getStories";
 import { StoriesAction, Story } from "../../types/story";
 
-const useFetchStories = (
+export const useFetchStories = (
   query: string,
   dispatch: React.Dispatch<StoriesAction>
 ): void => {
@@ -21,5 +21,3 @@ const useFetchStories = (
     fetchStories();
   }, [fetchStories]);
 };
-
-export default useFetchStories;

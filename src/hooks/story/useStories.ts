@@ -3,7 +3,7 @@ import {
   storiesReducer,
   initialStoriesState,
 } from "../../reducers/storiesReducer";
-import useFetchStories from "./useFetchStories";
+import { useFetchStories } from "./useFetchStories";
 import { Story } from "../../types/story";
 
 export const useStories = (query: string) => {
