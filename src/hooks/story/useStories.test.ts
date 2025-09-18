@@ -6,7 +6,6 @@ import { useFetchStories } from "./useFetchStories";
 
 // useFetchStories をモック化（空実装にする）
 jest.mock("./useFetchStories", () => ({
-  __esModule: true,
   useFetchStories: jest.fn(),
 }));
 
