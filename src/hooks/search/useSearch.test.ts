@@ -48,7 +48,7 @@ describe("useSearch", () => {
     act(() => {
       result.current.handleSearchInput({
         target: { value: "newValue" },
-      } as any);
+      } as React.ChangeEvent<HTMLInputElement>);
     });
 
     expect(result.current.searchTerm).toBe("newValue");
@@ -63,12 +63,14 @@ describe("useSearch", () => {
     act(() => {
       result.current.handleSearchInput({
         target: { value: "newValue" },
-      } as any);
+      } as React.ChangeEvent<HTMLInputElement>);
     });
 
     // submit
     act(() => {
-      result.current.handleSearchSubmit({ preventDefault: () => {} } as any);
+      result.current.handleSearchSubmit({
+        preventDefault: () => {},
+      } as React.FormEvent<HTMLFormElement>);
     });
 
     expect(result.current.query).toBe("newValue");
@@ -80,7 +82,7 @@ describe("useSearch", () => {
     act(() => {
       result.current.handleSearchInput({
         target: { value: "storedValue" },
-      } as any);
+      } as React.ChangeEvent<HTMLInputElement>);
     });
 
     expect(window.localStorage.getItem("searchKey")).toBe(
