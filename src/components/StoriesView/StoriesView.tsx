@@ -13,7 +13,7 @@ type StoriesViewProps = {
   onRemoveItem: (item: Story) => void;
 };
 
-const StoriesView = ({
+export const StoriesView = ({
   searchTerm,
   onSearchInput,
   onSearchSubmit,
@@ -49,5 +49,3 @@ const StoriesView = ({
     </>
   );
 };
-
-export default StoriesView;
