@@ -14,7 +14,11 @@ const SearchForm = ({
   onSearchInput,
   onSearchSubmit,
 }: SearchFormProps) => (
-  <form onSubmit={onSearchSubmit} className={styles.searchForm}>
+  <form
+    onSubmit={onSearchSubmit}
+    className={styles.searchForm}
+    aria-label="Search Form"
+  >
     <InputWithLabel
       id="search"
       value={searchTerm}
