@@ -1,3 +1,5 @@
+import "./logger";
+
 describe("logger utils", () => {
   const originalEnv = process.env;
   let warnSpy: jest.SpyInstance;
