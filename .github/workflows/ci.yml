@@ -25,7 +25,7 @@ jobs:
       - run: npm ci
 
       # テスト実行 & カバレッジ生成
-      - run: npx vitest run --coverage --reporter=lcov
+      - run: npx vitest run --coverage
 
       # Codecov にレポートをアップロード
       - name: Upload coverage to Codecov
