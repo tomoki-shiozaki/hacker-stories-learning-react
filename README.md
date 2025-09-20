@@ -1,5 +1,7 @@
 # Hacker Stories — React & TypeScript 学習プロジェクト
 
+[![Build Status](https://github.com/tomoki-shiozaki/hacker-stories-learning-react/actions/workflows/ci.yml/badge.svg)](https://github.com/tomoki-shiozaki/hacker-stories-learning-react/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/tomoki-shiozaki/hacker-stories-learning-react/graph/badge.svg?token=JEMD7YT6HS)](https://codecov.io/gh/tomoki-shiozaki/hacker-stories-learning-react)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## 概要
@@ -29,6 +31,7 @@ https://hacker-stories-learning-react.onrender.com
 
 - React（Function Components, Hooks）
 - TypeScript（型定義、ユニオン型、ジェネリクス）
+- Vite（開発環境、ビルドツール）
 
 ### スタイリング
 
@@ -47,13 +50,9 @@ https://hacker-stories-learning-react.onrender.com
 ## 工夫したポイント
 
 - 教材をベースにしつつ、責務ごとにファイルを分割・整理（コンポーネント、カスタムフック、ユーティリティなど）して構成を見直した
-
----
-
-## 今後の改善予定
-
-- 単体テスト・統合テストの追加
-- CRA から Vite への移行
+- ユニットテスト（コンポーネントやカスタムフックなど）や、msw を用いた統合テストを作成
+- CRA から Vite へ移行し、ビルド・開発環境を高速化
+- GitHub Actions と Codecov を導入し、テスト自動化とカバレッジ測定を行っている
 
 ---
 
@@ -63,7 +62,7 @@ https://hacker-stories-learning-react.onrender.com
 git clone git@github.com:tomoki-shiozaki/hacker-stories-learning-react.git
 cd hacker-stories-learning-react
 npm install
-npm start
+npm run dev
 ```
 
 ブラウザで `http://localhost:3000` にアクセスしてアプリを確認してください。
