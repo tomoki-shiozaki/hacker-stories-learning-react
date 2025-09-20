@@ -21,7 +21,9 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    // Vitestのグローバル関数（describe, it, expect など）を認識させるため
+    "types": ["vitest/globals"]
   },
   "include": ["src"]
 }
