@@ -1,18 +1,19 @@
 import "./logger";
+import { vi } from "vitest";
 
 describe("logger utils", () => {
   const originalEnv = process.env;
-  let warnSpy: jest.SpyInstance;
-  let infoSpy: jest.SpyInstance;
-  let errorSpy: jest.SpyInstance;
+  let warnSpy: vi.SpyInstance;
+  let infoSpy: vi.SpyInstance;
+  let errorSpy: vi.SpyInstance;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     process.env = { ...originalEnv }; // 環境変数をリセット
 
-    warnSpy = jest.spyOn(console, "warn").mockImplementation(() => {});
-    infoSpy = jest.spyOn(console, "info").mockImplementation(() => {});
-    errorSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+    warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+    infoSpy = vi.spyOn(console, "info").mockImplementation(() => {});
+    errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
   });
 
   afterAll(() => {
@@ -21,7 +22,7 @@ describe("logger utils", () => {
 
   it("development 環境では logWarn が console.warn を呼ぶ", async () => {
     process.env = { ...process.env, NODE_ENV: "development" };
-    jest.resetModules();
+    vi.resetModules();
     const { logWarn } = await import("./logger");
 
     logWarn("test warning");
@@ -30,7 +31,7 @@ describe("logger utils", () => {
 
   it("production 環境では logWarn は呼ばれない", async () => {
     process.env = { ...process.env, NODE_ENV: "production" };
-    jest.resetModules();
+    vi.resetModules();
     const { logWarn } = await import("./logger");
 
     logWarn("test warning");
@@ -39,7 +40,7 @@ describe("logger utils", () => {
 
   it("development 環境では logInfo が console.info を呼ぶ", async () => {
     process.env = { ...process.env, NODE_ENV: "development" };
-    jest.resetModules();
+    vi.resetModules();
     const { logInfo } = await import("./logger");
 
     logInfo("test info");
@@ -48,7 +49,7 @@ describe("logger utils", () => {
 
   it("development 環境では logError が console.error を呼ぶ", async () => {
     process.env = { ...process.env, NODE_ENV: "development" };
-    jest.resetModules();
+    vi.resetModules();
     const { logError } = await import("./logger");
 
     logError("test error");
@@ -57,7 +58,7 @@ describe("logger utils", () => {
 
   it("development 環境では console.error を呼ぶ", async () => {
     process.env = { ...process.env, NODE_ENV: "development" };
-    jest.resetModules(); // モジュールキャッシュをクリア
+    vi.resetModules(); // モジュールキャッシュをクリア
     const { logError } = await import("./logger"); // 環境変数を反映して再インポート
 
     logError("test error");
@@ -67,7 +68,7 @@ describe("logger utils", () => {
 
   it("production 環境では console.error を呼ばない", async () => {
     process.env = { ...process.env, NODE_ENV: "production" };
-    jest.resetModules();
+    vi.resetModules();
     const { logError } = await import("./logger");
 
     logError("test error");

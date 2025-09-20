@@ -1,5 +1,6 @@
 import { getAsyncStories } from "./getStories";
 import { Story } from "../types/story";
+import { vi } from "vitest";
 
 describe("getAsyncStories", () => {
   const mockStory: Story = {
@@ -12,7 +13,7 @@ describe("getAsyncStories", () => {
   };
 
   beforeEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it("成功時にストーリー配列を返す", async () => {
@@ -21,7 +22,7 @@ describe("getAsyncStories", () => {
     };
 
     // fetch をモック
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => mockResponse,
     } as Response);
@@ -35,7 +36,7 @@ describe("getAsyncStories", () => {
   });
 
   it("失敗時にエラーを投げる", async () => {
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: false,
     } as Response);
 
