@@ -1,11 +1,10 @@
 import "./logger";
-import { vi } from "vitest";
 
 describe("logger utils", () => {
   const originalEnv = process.env;
-  let warnSpy: vi.SpyInstance;
-  let infoSpy: vi.SpyInstance;
-  let errorSpy: vi.SpyInstance;
+  let warnSpy: ReturnType<typeof vi.spyOn>;
+  let infoSpy: ReturnType<typeof vi.spyOn>;
+  let errorSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
     vi.clearAllMocks();

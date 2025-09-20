@@ -1,6 +1,5 @@
 import { renderHook, act } from "@testing-library/react";
 import useSemiPersistentState from "./useSemiPersistentState";
-import { vi } from "vitest";
 
 const localStorageProto = Object.getPrototypeOf(window.localStorage);
 
@@ -8,28 +7,24 @@ beforeEach(() => {
   let store: Record<string, string> = {};
 
   vi.spyOn(localStorageProto, "getItem").mockImplementation(
-    (...args: any[]) => {
-      const key = args[0] as string;
-      return store[key] || null;
+    (key: unknown): string | null => {
+      return store[key as string] || null;
     }
   );
 
   vi.spyOn(localStorageProto, "setItem").mockImplementation(
-    (...args: any[]) => {
-      const key = args[0] as string;
-      const value = args[1] as string;
-      store[key] = value;
+    (key: unknown, value: unknown): void => {
+      store[key as string] = value as string;
     }
   );
 
   vi.spyOn(localStorageProto, "removeItem").mockImplementation(
-    (...args: any[]) => {
-      const key = args[0] as string;
-      delete store[key];
+    (key: unknown): void => {
+      delete store[key as string];
     }
   );
 
-  vi.spyOn(localStorageProto, "clear").mockImplementation(() => {
+  vi.spyOn(localStorageProto, "clear").mockImplementation((): void => {
     store = {};
   });
 });
