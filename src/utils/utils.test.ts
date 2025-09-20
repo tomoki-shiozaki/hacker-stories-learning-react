@@ -1,5 +1,5 @@
 import { getSumComments } from "./utils";
-import { StoriesState } from "../types/story";
+import type { StoriesState } from "../types/story";
 
 describe("getSumComments", () => {
   it("stories.data が空なら 0 を返す", () => {

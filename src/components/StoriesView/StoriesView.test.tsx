@@ -1,7 +1,7 @@
 import { vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { StoriesView } from "./StoriesView";
-import { StoriesState } from "../../types/story";
+import type { StoriesState } from "../../types/story";
 
 describe("StoriesView", () => {
   const sampleStories: StoriesState = {

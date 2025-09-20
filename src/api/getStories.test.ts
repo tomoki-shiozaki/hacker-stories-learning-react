@@ -1,5 +1,5 @@
 import { getAsyncStories } from "./getStories";
-import { Story } from "../types/story";
+import type { Story } from "../types/story";
 import { vi } from "vitest";
 
 describe("getAsyncStories", () => {

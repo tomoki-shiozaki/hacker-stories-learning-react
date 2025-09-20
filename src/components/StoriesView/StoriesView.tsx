@@ -3,7 +3,7 @@ import List from "./List/List";
 import SearchForm from "./SearchForm/SearchForm";
 import styles from "./StoriesView.module.css";
 import { getSumComments } from "../../utils/utils";
-import { StoriesState, Story } from "../../types/story";
+import type { StoriesState, Story } from "../../types/story";
 
 type StoriesViewProps = {
   searchTerm: string;

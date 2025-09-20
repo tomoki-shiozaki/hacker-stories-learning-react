@@ -1,7 +1,7 @@
 import { renderHook, act } from "@testing-library/react";
 import { useStories } from "./useStories";
 import { initialStoriesState } from "../../reducers/storiesReducer";
-import { Story } from "../../types/story";
+import type { Story } from "../../types/story";
 import { useFetchStories } from "./useFetchStories";
 import { vi } from "vitest";
 

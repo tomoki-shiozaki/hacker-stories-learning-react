@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { useFetchStories } from "./useFetchStories";
 import { getAsyncStories } from "../../api/getStories";
-import { Story } from "../../types/story";
+import type { Story } from "../../types/story";
 import { vi } from "vitest";
 
 // getAsyncStories をモック化

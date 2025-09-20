@@ -1,7 +1,7 @@
 import { vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import List from "./List";
-import { Story } from "../../../types/story";
+import type { Story } from "../../../types/story";
 
 describe("List", () => {
   const sampleList: Story[] = [
