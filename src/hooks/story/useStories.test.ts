@@ -3,7 +3,7 @@ import { useStories } from "./useStories";
 import { initialStoriesState } from "../../reducers/storiesReducer";
 import type { Story } from "../../types/story";
 import { useFetchStories } from "./useFetchStories";
-import { vi } from "vitest";
+import { type MockedFunction } from "vitest";
 
 // useFetchStories をモック化（空実装にする）
 vi.mock("./useFetchStories", () => ({
@@ -12,7 +12,7 @@ vi.mock("./useFetchStories", () => ({
 
 describe("useStories", () => {
   beforeEach(() => {
-    (useFetchStories as vi.Mock).mockClear();
+    (useFetchStories as MockedFunction<typeof useFetchStories>).mockClear();
   });
 
   it("初期状態が正しい", () => {
@@ -45,7 +45,7 @@ describe("useStories", () => {
 
     // 初期データを注入（テスト用に stories を上書き）
     act(() => {
-      (result.current as any).stories = {
+      (result.current as ReturnType<typeof useStories>).stories = {
         ...initialStoriesState,
         data: [initialStory],
       };

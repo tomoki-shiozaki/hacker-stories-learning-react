@@ -2,7 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { useFetchStories } from "./useFetchStories";
 import { getAsyncStories } from "../../api/getStories";
 import type { Story } from "../../types/story";
-import { vi } from "vitest";
+import { type MockedFunction } from "vitest";
 
 // getAsyncStories をモック化
 vi.mock("../../api/getStories", () => ({
@@ -27,7 +27,9 @@ describe("useFetchStories", () => {
         points: 5,
       },
     ];
-    (getAsyncStories as vi.Mock).mockResolvedValue(mockStories);
+    (
+      getAsyncStories as MockedFunction<typeof getAsyncStories>
+    ).mockResolvedValue(mockStories);
 
     renderHook(() => useFetchStories("react", mockDispatch));
 
@@ -46,7 +48,9 @@ describe("useFetchStories", () => {
   });
 
   it("失敗時に STORIES_FETCH_INIT と STORIES_FETCH_FAILURE が dispatch される", async () => {
-    (getAsyncStories as vi.Mock).mockRejectedValue(new Error("Network error"));
+    (
+      getAsyncStories as MockedFunction<typeof getAsyncStories>
+    ).mockRejectedValue(new Error("Network error"));
 
     renderHook(() => useFetchStories("react", mockDispatch));
 

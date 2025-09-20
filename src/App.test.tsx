@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { vi } from "vitest";
+import { type MockedFunction } from "vitest";
 import App from "./App";
 
 import { useSearch } from "./hooks/search/useSearch";
@@ -9,8 +9,8 @@ vi.mock("./hooks/search/useSearch");
 vi.mock("./hooks/story/useStories");
 
 describe("App integration", () => {
-  const mockUseSearch = useSearch as vi.MockedFunction<typeof useSearch>;
-  const mockUseStories = useStories as vi.MockedFunction<typeof useStories>;
+  const mockUseSearch = useSearch as MockedFunction<typeof useSearch>;
+  const mockUseStories = useStories as MockedFunction<typeof useStories>;
 
   beforeEach(() => {
     mockUseSearch.mockReturnValue({
