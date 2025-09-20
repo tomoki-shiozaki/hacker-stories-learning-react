@@ -1,4 +1,4 @@
-import React from "react";
+import { vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import SearchForm from "./SearchForm";
 
@@ -6,8 +6,8 @@ describe("SearchForm", () => {
   const setup = (props = {}) => {
     const defaultProps = {
       searchTerm: "",
-      onSearchInput: jest.fn(),
-      onSearchSubmit: jest.fn((e) => e.preventDefault()), // デフォルトでリロード防止
+      onSearchInput: vi.fn(),
+      onSearchSubmit: vi.fn((e) => e.preventDefault()), // デフォルトでリロード防止
       ...props,
     };
     render(<SearchForm {...defaultProps} />);

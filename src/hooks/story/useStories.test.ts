@@ -1,17 +1,18 @@
 import { renderHook, act } from "@testing-library/react";
 import { useStories } from "./useStories";
 import { initialStoriesState } from "../../reducers/storiesReducer";
-import { Story } from "../../types/story";
+import type { Story } from "../../types/story";
 import { useFetchStories } from "./useFetchStories";
+import { vi } from "vitest";
 
 // useFetchStories をモック化（空実装にする）
-jest.mock("./useFetchStories", () => ({
-  useFetchStories: jest.fn(),
+vi.mock("./useFetchStories", () => ({
+  useFetchStories: vi.fn(),
 }));
 
 describe("useStories", () => {
   beforeEach(() => {
-    (useFetchStories as jest.Mock).mockClear();
+    (useFetchStories as vi.Mock).mockClear();
   });
 
   it("初期状態が正しい", () => {

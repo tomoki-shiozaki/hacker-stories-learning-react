@@ -1,5 +1,5 @@
 import { storiesReducer, initialStoriesState } from "./storiesReducer";
-import { Story, StoriesAction, StoriesState } from "../types/story";
+import type { Story, StoriesAction, StoriesState } from "../types/story";
 
 const createStory = (overrides?: Partial<Story>): Story => ({
   objectID: "default-id",

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./List.module.css";
 import common from "../../../styles/common.module.css";
-import { Story } from "../../../types/story";
+import type { Story } from "../../../types/story";
 
 // props の型定義
 type ListProps = {

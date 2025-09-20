@@ -1,22 +1,23 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import { vi } from "vitest";
 import App from "./App";
 
 import { useSearch } from "./hooks/search/useSearch";
 import { useStories } from "./hooks/story/useStories";
 
-jest.mock("./hooks/search/useSearch");
-jest.mock("./hooks/story/useStories");
+vi.mock("./hooks/search/useSearch");
+vi.mock("./hooks/story/useStories");
 
 describe("App integration", () => {
-  const mockUseSearch = useSearch as jest.MockedFunction<typeof useSearch>;
-  const mockUseStories = useStories as jest.MockedFunction<typeof useStories>;
+  const mockUseSearch = useSearch as vi.MockedFunction<typeof useSearch>;
+  const mockUseStories = useStories as vi.MockedFunction<typeof useStories>;
 
   beforeEach(() => {
     mockUseSearch.mockReturnValue({
       searchTerm: "React",
       query: "React",
-      handleSearchInput: jest.fn(),
-      handleSearchSubmit: jest.fn(),
+      handleSearchInput: vi.fn(),
+      handleSearchSubmit: vi.fn(),
     });
 
     mockUseStories.mockReturnValue({
@@ -42,12 +43,12 @@ describe("App integration", () => {
         isLoading: false,
         isError: false,
       },
-      handleRemoveStory: jest.fn(),
+      handleRemoveStory: vi.fn(),
     });
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("useStories から取得したストーリーが表示されること", () => {
@@ -58,12 +59,12 @@ describe("App integration", () => {
   });
 
   test("検索入力が変更されたときに handleSearchInput が呼び出されること", () => {
-    const mockHandleSearchInput = jest.fn();
+    const mockHandleSearchInput = vi.fn();
     mockUseSearch.mockReturnValue({
       searchTerm: "",
       query: "",
       handleSearchInput: mockHandleSearchInput,
-      handleSearchSubmit: jest.fn(),
+      handleSearchSubmit: vi.fn(),
     });
 
     render(<App />);
@@ -75,11 +76,11 @@ describe("App integration", () => {
   });
 
   test("検索フォーム送信時に handleSearchSubmit が呼び出されること", () => {
-    const mockHandleSearchSubmit = jest.fn((e) => e.preventDefault());
+    const mockHandleSearchSubmit = vi.fn((e) => e.preventDefault());
     mockUseSearch.mockReturnValue({
       searchTerm: "React",
       query: "React",
-      handleSearchInput: jest.fn(),
+      handleSearchInput: vi.fn(),
       handleSearchSubmit: mockHandleSearchSubmit,
     });
 

@@ -1,18 +1,19 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { useFetchStories } from "./useFetchStories";
 import { getAsyncStories } from "../../api/getStories";
-import { Story } from "../../types/story";
+import type { Story } from "../../types/story";
+import { vi } from "vitest";
 
 // getAsyncStories をモック化
-jest.mock("../../api/getStories", () => ({
-  getAsyncStories: jest.fn(),
+vi.mock("../../api/getStories", () => ({
+  getAsyncStories: vi.fn(),
 }));
 
 describe("useFetchStories", () => {
-  const mockDispatch = jest.fn();
+  const mockDispatch = vi.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("成功時に STORIES_FETCH_INIT と STORIES_FETCH_SUCCESS が dispatch される", async () => {
@@ -26,7 +27,7 @@ describe("useFetchStories", () => {
         points: 5,
       },
     ];
-    (getAsyncStories as jest.Mock).mockResolvedValue(mockStories);
+    (getAsyncStories as vi.Mock).mockResolvedValue(mockStories);
 
     renderHook(() => useFetchStories("react", mockDispatch));
 
@@ -45,9 +46,7 @@ describe("useFetchStories", () => {
   });
 
   it("失敗時に STORIES_FETCH_INIT と STORIES_FETCH_FAILURE が dispatch される", async () => {
-    (getAsyncStories as jest.Mock).mockRejectedValue(
-      new Error("Network error")
-    );
+    (getAsyncStories as vi.Mock).mockRejectedValue(new Error("Network error"));
 
     renderHook(() => useFetchStories("react", mockDispatch));
 

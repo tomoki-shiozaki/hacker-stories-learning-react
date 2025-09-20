@@ -1,4 +1,4 @@
-import React from "react";
+import { vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import InputWithLabel from "./InputWithLabel";
 
@@ -7,7 +7,7 @@ describe("InputWithLabel", () => {
     const defaultProps = {
       id: "search",
       value: "",
-      onInputChange: jest.fn(),
+      onInputChange: vi.fn(),
       children: "Search:",
       ...props,
     };

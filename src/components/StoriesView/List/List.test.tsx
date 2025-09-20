@@ -1,7 +1,7 @@
-import React from "react";
+import { vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import List from "./List";
-import { Story } from "../../../types/story";
+import type { Story } from "../../../types/story";
 
 describe("List", () => {
   const sampleList: Story[] = [
@@ -24,7 +24,7 @@ describe("List", () => {
   ];
 
   const setup = (list = sampleList) => {
-    const onRemoveItem = jest.fn();
+    const onRemoveItem = vi.fn();
     render(<List list={list} onRemoveItem={onRemoveItem} />);
     return { onRemoveItem };
   };

@@ -1,4 +1,4 @@
-import { StoriesState, StoriesAction } from "../types/story";
+import type { StoriesState, StoriesAction } from "../types/story";
 
 export const initialStoriesState: StoriesState = {
   data: [],
