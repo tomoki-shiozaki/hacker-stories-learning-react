@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InputWithLabel > renders correctly with label and input (snapshot) 1`] = `
+<DocumentFragment>
+  <label
+    class="_label_e35791"
+    for="search"
+  >
+    Search:
+  </label>
+   
+  <input
+    class="_input_e35791"
+    id="search"
+    type="text"
+    value="React"
+  />
+</DocumentFragment>
+`;
+
+exports[`InputWithLabel > renders correctly with label and input 1`] = `
+<DocumentFragment>
+  <label
+    class="_label_e35791"
+    for="search"
+  >
+    Search:
+  </label>
+   
+  <input
+    class="_input_e35791"
+    id="search"
+    type="text"
+    value="React"
+  />
+</DocumentFragment>
+`;
