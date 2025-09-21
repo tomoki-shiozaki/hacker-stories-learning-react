@@ -65,7 +65,7 @@ npm install
 npm run dev
 ```
 
-ブラウザで `http://localhost:3000` にアクセスしてアプリを確認してください。
+ブラウザで `http://localhost:5173` にアクセスしてアプリを確認してください。
 
 ## ライセンス
 
