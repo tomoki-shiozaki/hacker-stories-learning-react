@@ -51,4 +51,19 @@ describe("InputWithLabel", () => {
     const input = screen.getByLabelText(/search:/i);
     expect(input).toHaveAttribute("type", "password");
   });
+
+  it("renders correctly with label and input (snapshot)", () => {
+    const { asFragment } = render(
+      <InputWithLabel
+        id="search"
+        value="React"
+        onInputChange={() => {}}
+        isFocused={true}
+      >
+        Search:
+      </InputWithLabel>
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+  });
 });
